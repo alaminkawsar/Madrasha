@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.automirrored.filled.Assignment
+import androidx.compose.material.icons.filled.Assignment
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Dashboard
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.People
@@ -77,6 +80,9 @@ fun AdminDrawer(
         DrawerItem("Students", Icons.Default.People)
         DrawerItem("Teachers", Icons.Default.School)
         DrawerItem("Courses", Icons.Default.MenuBook)
+        DrawerItem("Weekly Input", Icons.Default.EditCalendar)
+        DrawerItem("Monthly Input", Icons.Default.DateRange)
+        DrawerItem("Exams & Results", Icons.Default.Assignment)
         DrawerItem("Notices", Icons.Default.Notifications)
     }
 }

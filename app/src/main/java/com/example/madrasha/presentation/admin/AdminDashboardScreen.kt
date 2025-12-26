@@ -16,6 +16,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.example.madrasha.presentation.admin.components.AdminDashboardContent
 import com.example.madrasha.presentation.admin.components.AdminDrawer
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminDashboardScreen(
-    onLogout: () -> Unit
+    navController: NavController,
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -43,7 +44,9 @@ fun AdminDashboardScreen(
                     onMenuClick = {
                         scope.launch { drawerState.open() }
                     },
-                    onLogoutClick = onLogout
+                    onLogoutClick = {
+                        navController.popBackStack()
+                    }
                 )
             }
         ) { padding ->

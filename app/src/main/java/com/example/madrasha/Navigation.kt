@@ -23,9 +23,7 @@ fun NavGraphBuilder.authenticationNav(
             LoginScreen(navController)
         }
         composable(route = ADMIN_ROUTE) {
-            AdminDashboardScreen {
-                // log out event
-            }
+            AdminDashboardScreen (navController)
         }
 //        composable(route = Screen.SignUpScreen.route) {
 //            SignUpScreen(navController = navController, sharedViewModel, hiltViewModel())

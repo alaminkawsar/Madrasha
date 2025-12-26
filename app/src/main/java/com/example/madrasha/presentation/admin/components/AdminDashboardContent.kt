@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-
 
 @Composable
 fun AdminDashboardContent(
@@ -41,22 +41,14 @@ fun AdminDashboardContent(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item {
-            Text(
-                "Welcome to Islamic School Management System",
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
+        item { DashboardStatsGrid() }
 
-        item {
-            DashboardStatsGrid()
-        }
+        item { RecentStudentsCard() }
 
-        item {
-            RecentStudentsCard()
-        }
+        item { RecentNoticesCard() }
     }
 }
+
 @Composable
 fun DashboardStatsGrid() {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -109,6 +101,7 @@ fun RecentStudentsCard() {
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
+
             Text(
                 "Recent Students",
                 style = MaterialTheme.typography.titleMedium
@@ -116,12 +109,83 @@ fun RecentStudentsCard() {
 
             Spacer(Modifier.height(12.dp))
 
-            Text("Ali Hassan")
-            Text(
-                "Advanced Quran & Hadith Studies",
-                style = MaterialTheme.typography.bodySmall
-            )
+            StudentItem("Ali Hassan", "Advanced Quran & Hadith Studies", "S001")
+            Divider()
+            StudentItem("Fatima Zahra", "Hifz & Tajweed Program", "S002")
+            Divider()
+            StudentItem("Muhammad Ibrahim", "Advanced Islamic Jurisprudence", "S003")
+            Divider()
+            StudentItem("Ayesha Siddika", "Arabic Language Studies", "S004")
         }
     }
 }
+@Composable
+fun StudentItem(
+    name: String,
+    program: String,
+    id: String
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Column {
+            Text(name, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                program,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color.Gray
+            )
+        }
+
+        Text(
+            id,
+            color = Color(0xFF00C853),
+            style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+@Composable
+fun RecentNoticesCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+
+            Text(
+                "Recent Notices",
+                style = MaterialTheme.typography.titleMedium
+            )
+
+            Spacer(Modifier.height(12.dp))
+
+            NoticeItem("Upcoming Ramadan Schedule", "2024-11-20")
+            Divider()
+            NoticeItem("Mid-Term Examinations", "2024-11-18")
+            Divider()
+            NoticeItem("Islamic Knowledge Competition", "2024-11-15")
+        }
+    }
+}
+@Composable
+fun NoticeItem(
+    title: String,
+    date: String
+) {
+    Column(
+        modifier = Modifier.padding(vertical = 8.dp)
+    ) {
+        Text(title, style = MaterialTheme.typography.bodyMedium)
+        Text(
+            date,
+            style = MaterialTheme.typography.bodySmall,
+            color = Color.Gray
+        )
+    }
+}
+
 
