@@ -18,7 +18,9 @@ fun NavGraphBuilder.authenticationNav(
 //        lateinit var messengerViewModel: MessengerViewModel
         composable(route = Screen.SignInScreen.route) {
 //            SignInScreen(navController = navController)
-            LoginScreen()
+            LoginScreen(
+                navController
+            )
         }
 //        composable(route = Screen.SignUpScreen.route) {
 //            SignUpScreen(navController = navController, sharedViewModel, hiltViewModel())
