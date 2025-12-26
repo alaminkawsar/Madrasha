@@ -19,7 +19,6 @@ fun NavGraphBuilder.authenticationNav(
         composable(route = Screen.SignInScreen.route) {
 //            SignInScreen(navController = navController)
             LoginScreen(
-                navController
             )
         }
 //        composable(route = Screen.SignUpScreen.route) {

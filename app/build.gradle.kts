@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+//    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -68,11 +68,11 @@ dependencies {
 
 
     // hilt dependency
-    implementation(libs.hilt.android)
+//    implementation(libs.hilt.android)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.ui.text)
     debugImplementation(libs.androidx.ui.tooling)
-    kapt(libs.hilt.android.compiler)
+//    kapt(libs.hilt.android.compiler)
 
     // retrofit networking api
 //    implementation ("com.squareup.retrofit2:retrofit:3.0.0")         // Retrofit library
