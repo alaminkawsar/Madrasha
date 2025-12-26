@@ -17,17 +17,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.*
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavController
 import com.example.al_hisan.ui.theme.Green
 import com.example.al_hisan.ui.theme.Green20
 import com.example.al_hisan.ui.theme.PrimaryGreen
 import com.example.al_hisan.ui.theme.SoftGreen
+import com.example.madrasha.core.util.ADMIN_ROUTE
+import com.example.madrasha.core.util.GUARDIAN_ROUTE
+import com.example.madrasha.core.util.STUDENT_ROUTE
+import com.example.madrasha.core.util.TEACHER_ROUTE
+import com.example.madrasha.core.util.UserRole
 
-//@Composable
-//fun SignInBackground(modifier: Modifier = Modifier) {
-//
-//}
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -77,6 +79,7 @@ fun LoginScreen() {
 
         // 📦 Login Card
         LoginCard(
+            navController = navController,
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(
@@ -90,7 +93,10 @@ fun LoginScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginCard(modifier: Modifier = Modifier) {
+fun LoginCard(
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -194,7 +200,15 @@ fun LoginCard(modifier: Modifier = Modifier) {
 
             // Sign In Button
             Button(
-                onClick = { /* TODO: login */ },
+                onClick = {
+                    val role = UserRole.ADMIN
+                    when (role) {
+                        UserRole.ADMIN -> navController.navigate(ADMIN_ROUTE)
+                        UserRole.TEACHER -> navController.navigate(TEACHER_ROUTE)
+                        UserRole.STUDENT -> navController.navigate(STUDENT_ROUTE)
+                        UserRole.GUARDIAN -> navController.navigate(GUARDIAN_ROUTE)
+                    }
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = PrimaryGreen
                 ),

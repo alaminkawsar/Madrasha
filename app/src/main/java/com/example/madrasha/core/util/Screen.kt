@@ -2,14 +2,12 @@ package com.example.madrasha.core.util
 
 const val ROOT_ROUTE = "root"
 const val AUTHENTICATION_ROUTE = "authentication"
-const val EXERCISE_ROUTE = "exercise"
-const val CHAT_BOT_ROUTE = "chat-bot"
-const val BIOMETRIC_ROUTE = "biometric"
+const val ADMIN_ROUTE = "admin"
+const val TEACHER_ROUTE = "teacher"
+const val STUDENT_ROUTE = "student"
+const val GUARDIAN_ROUTE = "guardian"
 
 sealed class Screen(val route: String) {
-    object SplashScreen : Screen("splash_screen")
-    object WalkThroughScreen : Screen("walk_through_screen")
-    object WelcomeScreen : Screen("welcome_screen")
     object SignInScreen : Screen("sign_in_screen")
     object SignUpScreen : Screen("sign_up_screen")
     object ResetPasswordScreen : Screen("reset_password_screen")

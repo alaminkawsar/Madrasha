@@ -5,9 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.madrasha.core.util.ADMIN_ROUTE
 import com.example.madrasha.core.util.AUTHENTICATION_ROUTE
 import com.example.madrasha.core.util.Screen
 import com.example.madrasha.presentation.SignInScreen
+import com.example.madrasha.presentation.admin.AdminDashboardScreen
 import com.example.madrasha.presentation.sign_in.LoginScreen
 
 fun NavGraphBuilder.authenticationNav(
@@ -18,8 +20,12 @@ fun NavGraphBuilder.authenticationNav(
 //        lateinit var messengerViewModel: MessengerViewModel
         composable(route = Screen.SignInScreen.route) {
 //            SignInScreen(navController = navController)
-            LoginScreen(
-            )
+            LoginScreen(navController)
+        }
+        composable(route = ADMIN_ROUTE) {
+            AdminDashboardScreen {
+                // log out event
+            }
         }
 //        composable(route = Screen.SignUpScreen.route) {
 //            SignUpScreen(navController = navController, sharedViewModel, hiltViewModel())
