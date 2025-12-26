@@ -33,3 +33,6 @@ val Gray600 = Color(0xFFB0B7C3)
 val Gray500 = Color(0xFF80888D)
 val Gray900 = Color(0xFF00121C)
 val NionGreen = Color(0xFFAAFF00)
+
+val SoftGreen = Color(0xFFE9F7EF)
+val PrimaryGreen = Color(0xFF0FA958)
