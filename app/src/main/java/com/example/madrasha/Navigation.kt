@@ -1,6 +1,5 @@
 package com.example.madrasha
 
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -8,8 +7,7 @@ import androidx.navigation.navigation
 import com.example.madrasha.core.util.ADMIN_ROUTE
 import com.example.madrasha.core.util.AUTHENTICATION_ROUTE
 import com.example.madrasha.core.util.Screen
-import com.example.madrasha.presentation.SignInScreen
-import com.example.madrasha.presentation.admin.AdminDashboardScreen
+import com.example.madrasha.presentation.student.StudentScreen
 import com.example.madrasha.presentation.sign_in.LoginScreen
 
 fun NavGraphBuilder.authenticationNav(
@@ -23,7 +21,7 @@ fun NavGraphBuilder.authenticationNav(
             LoginScreen(navController)
         }
         composable(route = ADMIN_ROUTE) {
-            AdminDashboardScreen (navController)
+            StudentScreen (navController)
         }
 //        composable(route = Screen.SignUpScreen.route) {
 //            SignUpScreen(navController = navController, sharedViewModel, hiltViewModel())
