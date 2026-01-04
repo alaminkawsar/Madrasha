@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Menu
@@ -104,7 +105,7 @@ fun HomeTopBar(
 
 @Composable
 fun HeaderSection() {
-    Column {
+    Column (modifier = Modifier.padding(16.dp)){
         Text(
             text = "Student Management",
             fontSize = 22.sp,

@@ -34,17 +34,21 @@ import androidx.navigation.NavController
 
 @Composable
 fun AdminDashboardContent() {
-    LazyColumn(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item { DashboardStatsGrid() }
+//        item { DashboardStatsGrid() }
+//
+//        item { RecentStudentsCard() }
+//
+//        item { RecentNoticesCard() }
 
-        item { RecentStudentsCard() }
-
-        item { RecentNoticesCard() }
+        DashboardStatsGrid()
+        RecentStudentsCard()
+        RecentNoticesCard()
     }
 }
 
