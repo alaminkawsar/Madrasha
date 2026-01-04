@@ -1,190 +1,134 @@
-package com.example.madrasha.core.component//package com.example.al_hisan.core.component
-//
-//import androidx.compose.foundation.Image
-//import androidx.compose.foundation.background
-//import androidx.compose.foundation.clickable
-//import androidx.compose.foundation.layout.*
-//import androidx.compose.material.*
-//import androidx.compose.material.icons.Icons
-//import androidx.compose.material.icons.filled.Chat
-//import androidx.compose.material.icons.filled.Close
-//import androidx.compose.material.icons.filled.Dashboard
-//import androidx.compose.material.icons.filled.Logout
-//import androidx.compose.runtime.Composable
-//import androidx.compose.runtime.rememberCoroutineScope
-//import androidx.compose.ui.Alignment
-//import androidx.compose.ui.Modifier
-//import androidx.compose.ui.geometry.Offset
-//import androidx.compose.ui.graphics.Brush
-//import androidx.compose.ui.graphics.Color
-//import androidx.compose.ui.layout.ContentScale
-//import androidx.compose.ui.platform.LocalConfiguration
-//import androidx.compose.ui.res.painterResource
-//import androidx.compose.ui.tooling.preview.Preview
-//import androidx.compose.ui.unit.dp
-//import androidx.compose.ui.unit.sp
-//import androidx.navigation.NavController
-//import androidx.navigation.compose.rememberNavController
-//import com.example.al_hisan.R
-//import com.mymedicalhub.emmavirtualtherapist.android.R
-//import com.mymedicalhub.emmavirtualtherapist.android.core.util.Screen
-//import com.mymedicalhub.emmavirtualtherapist.android.ui.theme.EmmaVirtualTherapistTheme
-//import kotlinx.coroutines.CoroutineScope
-//import kotlinx.coroutines.launch
-//
-//@Composable
-//fun NavigationDrawer(
-//    navController: NavController,
-//    coroutineScope: CoroutineScope,
-//    scaffoldState: ScaffoldState,
-//    onLogOut: () -> Unit
-//) {
-//    Column(modifier = Modifier.fillMaxSize()) {
-//        Box(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .height(250.dp),
-//            contentAlignment = Alignment.BottomStart
-//        ) {
-//            Image(
-//                painter = painterResource(id = R.drawable.background),
-//                contentDescription = "Background",
-//                modifier = Modifier.fillMaxSize(),
-//                contentScale = ContentScale.Crop
-//            )
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .background(
-//                        brush = Brush.linearGradient(
-//                            colors = listOf(
-//                                Color(0, 0, 0, 0),
-//                                Color(0, 0, 0, 0x88)
-//                            ),
-//                            start = Offset(
-//                                LocalConfiguration.current.screenWidthDp.toFloat() / 2,
-//                                0f
-//                            ),
-//                            end = Offset(
-//                                LocalConfiguration.current.screenWidthDp.toFloat() / 2,
-//                                LocalConfiguration.current.screenHeightDp.toFloat()
-//                            )
-//                        )
-//                    )
-//            )
-//            IconButton(
-//                onClick = {
-//                    coroutineScope.launch {
-//                        scaffoldState.drawerState.close()
-//                    }
-//                },
-//                modifier = Modifier.align(Alignment.TopEnd)
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Close,
-//                    contentDescription = "Close Navigation Drawer",
-//                    tint = Color.White
-//                )
-//            }
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(8.dp)
-//            ) {
-//                Image(
-//                    painter = painterResource(id = R.drawable.mmh_logo_white),
-//                    contentDescription = "MMH White Logo",
-//                    modifier = Modifier.width(170.dp),
-//                    contentScale = ContentScale.FillWidth
-//                )
-//                Column {
-//                    Text(
-//                        text = "EMMA",
-//                        color = MaterialTheme.colors.onPrimary,
-//                        fontSize = 20.sp
-//                    )
-//                    Text(
-//                        text = "Your personal exercise management assistant",
-//                        color = MaterialTheme.colors.onPrimary
-//                    )
-//                }
-//            }
-//        }
-//        Column(
-//            modifier = Modifier
-//                .weight(1f)
-//                .padding(8.dp)
-//        ) {
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(50.dp)
-//                    .clickable {
-//                        coroutineScope.launch {
-//                            scaffoldState.drawerState.close()
-//                        }
-//                        navController.popBackStack()
-//                        navController.navigate(Screen.BotListScreen.route)
-//                    },
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Chat,
-//                    contentDescription = "Chat Bots"
-//                )
-//                Spacer(modifier = Modifier.width(24.dp))
-//                Text(text = "Chat Bots")
-//            }
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(50.dp)
-//                    .clickable {
-//                        coroutineScope.launch {
-//                            scaffoldState.drawerState.close()
-//                        }
-//                        navController.popBackStack()
-//                        navController.navigate(Screen.AssessmentListScreen.route)
-//                    },
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Icon(
-//                    imageVector = Icons.Default.Dashboard,
-//                    contentDescription = "My Assessments"
-//                )
-//                Spacer(modifier = Modifier.width(24.dp))
-//                Text(text = "My Assessments")
-//            }
-//            Row(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(50.dp)
-//                    .clickable {
-//                        coroutineScope.launch {
-//                            scaffoldState.drawerState.close()
-//                        }
-//                        onLogOut()
-//                    },
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Icon(imageVector = Icons.Default.Logout, contentDescription = "Logout")
-//                Spacer(modifier = Modifier.width(24.dp))
-//                Text(text = "Logout")
-//            }
-//        }
-//        Text(text = "EMMA_v0.0.26", modifier = Modifier.padding(8.dp))
-//    }
-//}
-//
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun NavigationDrawerPreview() {
-//    EmmaVirtualTherapistTheme {
-//        NavigationDrawer(
-//            navController = rememberNavController(),
-//            coroutineScope = rememberCoroutineScope(),
-//            scaffoldState = rememberScaffoldState(),
-//            onLogOut = {}
-//        )
-//    }
-//}
+package com.example.madrasha.core.component
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Assignment
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Dashboard
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.EditCalendar
+import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.School
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
+import com.example.madrasha.core.util.AdminDrawerScreen
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+
+@Composable
+fun NavigationDrawer(
+    drawerState: DrawerState,
+    scope: CoroutineScope,
+    selectedItem: (AdminDrawerScreen) -> Unit
+) {
+    val configuration = LocalConfiguration.current
+    val drawerWidth = configuration.screenWidthDp.dp * 2 / 3
+
+    ModalDrawerSheet(
+        modifier = Modifier.width(drawerWidth)
+    ) {
+        // Top row with title + close icon
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Islamic School",
+                style = MaterialTheme.typography.titleLarge
+            )
+
+            IconButton(
+                onClick = {
+                    scope.launch { drawerState.close() }
+                }
+            ) {
+                Icon(
+                    Icons.Default.Close,
+                    contentDescription = "Close Drawer"
+                )
+            }
+        }
+
+        Divider()
+
+        Spacer(Modifier.height(8.dp))
+        getNavDrawerItem().forEach { (keyName, title, icon) ->
+            DrawerItem(title, icon) {
+                selectedItem(keyName)
+            }
+        }
+    }
+}
+
+
+@Composable
+fun DrawerItem(
+    title: String,
+    icon: ImageVector,
+    onClick: () -> Unit
+) {
+    NavigationDrawerItem(
+        label = { Text(title) },
+        selected = false,
+        onClick = { onClick() },
+        icon = {
+            Icon(icon, contentDescription = title)
+        },
+        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+    )
+}
+
+data class NavDrawerItem(
+    val keyName: AdminDrawerScreen,
+    val title: String,
+    val icon: ImageVector
+)
+
+private fun getNavDrawerItem(): List<NavDrawerItem> {
+    return listOf(
+        NavDrawerItem(AdminDrawerScreen.DASHBOARD, "Dashboard", Icons.Default.Dashboard),
+        NavDrawerItem(AdminDrawerScreen.STUDENT, "Students", Icons.Default.People),
+        NavDrawerItem(AdminDrawerScreen.TEACHER, "Teachers", Icons.Default.School),
+        NavDrawerItem(AdminDrawerScreen.COURSE, "Courses", Icons.Default.MenuBook),
+        NavDrawerItem(
+            AdminDrawerScreen.WEEKLY_INPUT,
+            "Weekly Input",
+            Icons.Default.EditCalendar
+        ),
+        NavDrawerItem(
+            AdminDrawerScreen.MONTHLY_INPUT,
+            "Monthly Input",
+            Icons.Default.DateRange
+        ),
+        NavDrawerItem(
+            AdminDrawerScreen.EXAM_AND_RESULT,
+            "Exams & Results",
+            Icons.Default.Assignment
+        ),
+        NavDrawerItem(AdminDrawerScreen.NOTICE, "Notices", Icons.Default.Notifications),
+    )
+}
