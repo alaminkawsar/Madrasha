@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import com.example.madrasha.core.util.ADMIN_ROUTE
 import com.example.madrasha.core.util.AUTHENTICATION_ROUTE
 import com.example.madrasha.core.util.Screen
+import com.example.madrasha.presentation.HomeDashboardScreen
 import com.example.madrasha.presentation.student.StudentScreen
 import com.example.madrasha.presentation.sign_in.LoginScreen
 
@@ -21,7 +22,7 @@ fun NavGraphBuilder.authenticationNav(
             LoginScreen(navController)
         }
         composable(route = ADMIN_ROUTE) {
-            StudentScreen (navController)
+            HomeDashboardScreen(navController)
         }
 //        composable(route = Screen.SignUpScreen.route) {
 //            SignUpScreen(navController = navController, sharedViewModel, hiltViewModel())

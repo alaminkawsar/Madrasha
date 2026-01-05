@@ -42,9 +42,7 @@ import androidx.navigation.NavController
 import com.example.madrasha.presentation.student.components.AddStudentCard
 
 @Composable
-fun StudentScreen(
-    navController: NavController
-) {
+fun StudentScreen() {
     val students = remember {
         listOf(
             Student("S001", "Ali Hassan", "Hassan Ahmed"),
@@ -54,75 +52,26 @@ fun StudentScreen(
     }
     var showSheet by remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            StudentTopBar()
-        }
-    ) { padding ->
-        Box {
-            Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .padding(16.dp)
-                    .fillMaxSize()
-            ) {
-                HeaderSection()
-                Spacer(modifier = Modifier.height(16.dp))
-                AddStudentButton() {
-                    showSheet = true
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-                StudentListCard(students)
-
+    Box {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()
+        ) {
+            Spacer(modifier = Modifier.height(16.dp))
+            AddStudentButton() {
+                showSheet = true
             }
-            if (showSheet) {
-                AddStudentCard {
-                    showSheet = false
-                }
+
+            Spacer(modifier = Modifier.height(16.dp))
+            StudentListCard(students)
+
+        }
+        if (showSheet) {
+            AddStudentCard {
+                showSheet = false
             }
         }
-
-    }
-}
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun StudentTopBar() {
-    TopAppBar(
-        title = {
-            Icon(
-                imageVector = Icons.Default.MenuBook,
-                contentDescription = null,
-                tint = Color(0xFF16A34A)
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = {}) {
-                Icon(Icons.Default.Menu, contentDescription = "Menu")
-            }
-        },
-        actions = {
-            IconButton(onClick = {}) {
-                Icon(Icons.Default.Logout, contentDescription = "Logout")
-            }
-        }
-    )
-}
-
-@Composable
-fun HeaderSection() {
-    Column {
-        Text(
-            text = "Student Management",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "Manage all student records and information",
-            fontSize = 14.sp,
-            color = Color.Gray
-        )
     }
 }
 
