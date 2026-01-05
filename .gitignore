@@ -1,15 +1,41 @@
-*.iml
-.gradle
+# =========================
+# Android / Gradle
+# =========================
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+# Generated build files
+build/
+*/build/
+# Gradle
+.gradle/
+gradle-app.setting
+# Local configuration
 /local.properties
+# =========================
+# Android Studio / IntelliJ
+# =========================
+.idea/
+*.iml
+#Caches
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+# =========================
+# OS files
+# =========================
 .DS_Store
-/build
+# =========================
+# Debug / Profiling
+# =========================
 /captures
+# =========================
+# NDK / CMake
+# =========================
+.cxx/
 .externalNativeBuild
-.cxx
-local.properties

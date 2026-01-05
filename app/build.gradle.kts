@@ -10,9 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.madrasha"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.madrasha"
@@ -48,6 +46,7 @@ android {
 kotlin {
     jvmToolchain(11)
 }
+
 dependencies {
 
     implementation(libs.androidx.annotation)
