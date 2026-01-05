@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.student.components
+package com.example.madrasha.presentation.teacher.components
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -41,10 +41,11 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.madrasha.presentation.student.components.SmallTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddStudentCard(
+fun AddTeacherCard(
     modifier: Modifier = Modifier,
     onClose: () -> Unit
 ) {

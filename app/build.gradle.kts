@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.ui.text)
     implementation(libs.androidx.runtime)
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.foundation.layout)
     debugImplementation(libs.androidx.ui.tooling)
 //    kapt(libs.hilt.android.compiler)
 

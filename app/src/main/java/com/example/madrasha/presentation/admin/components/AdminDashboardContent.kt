@@ -31,24 +31,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.madrasha.presentation.HeaderSection
 
 @Composable
 fun AdminDashboardContent() {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-//        item { DashboardStatsGrid() }
-//
-//        item { RecentStudentsCard() }
-//
-//        item { RecentNoticesCard() }
+        item { HeaderSection() }
+        item { DashboardStatsGrid() }
+        item { RecentStudentsCard() }
+        item { RecentNoticesCard() }
 
-        DashboardStatsGrid()
-        RecentStudentsCard()
-        RecentNoticesCard()
+//        DashboardStatsGrid()
+//        RecentStudentsCard()
+//        RecentNoticesCard()
     }
 }
 

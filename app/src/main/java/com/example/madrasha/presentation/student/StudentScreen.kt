@@ -4,6 +4,7 @@ package com.example.madrasha.presentation.student
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,19 +16,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,8 +35,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import com.example.madrasha.core.component.CustomSearchBar
+import com.example.madrasha.presentation.HeaderSection
 import com.example.madrasha.presentation.student.components.AddStudentCard
 
 @Composable
@@ -58,7 +56,8 @@ fun StudentScreen() {
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
+            HeaderSection()
+            Spacer(modifier = Modifier.height(8.dp))
             AddStudentButton() {
                 showSheet = true
             }
@@ -104,12 +103,11 @@ fun StudentListCard(students: List<Student>) {
                 fontWeight = FontWeight.Bold
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-//            SearchBar()
-
-            Spacer(modifier = Modifier.height(12.dp))
-
+            Spacer(modifier = Modifier.height(8.dp))
+            CustomSearchBar(
+                hint = "Search Student"
+            ) { }
+            Spacer(modifier = Modifier.height(8.dp))
             StudentTable(students)
         }
     }
@@ -118,17 +116,26 @@ fun StudentListCard(students: List<Student>) {
 fun StudentTable(students: List<Student>) {
     val scrollState = rememberScrollState()
 
-    Column(
+    Box(
         modifier = Modifier
+            .fillMaxWidth()
             .horizontalScroll(scrollState)
     ) {
-        TableHeader()
-
-        students.forEach {
-            TableRow(it)
+        Column(
+            modifier = Modifier.width(IntrinsicSize.Max)
+        ) {
+            TableHeader()
+            students.forEach {
+                HorizontalDivider(
+                    modifier = Modifier.fillMaxWidth(),
+                    thickness = 1.dp
+                )
+                TableRow(it)
+            }
         }
     }
 }
+
 @Composable
 fun TableHeader() {
     Row(modifier = Modifier.padding(vertical = 8.dp)) {
