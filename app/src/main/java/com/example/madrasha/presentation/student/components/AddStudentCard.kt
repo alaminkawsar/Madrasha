@@ -53,7 +53,6 @@ fun AddStudentCard(
     Card(
         modifier = modifier
             .fillMaxSize()
-            .padding(top = 110.dp, bottom = 40.dp)
             .pointerInput(Unit) {
                 detectTapGestures {
                     focusManager.clearFocus()
@@ -68,12 +67,10 @@ fun AddStudentCard(
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-
             // 🔹 Top Bar
             TopBar { onClose() }
             HorizontalDivider(Modifier, DividerDefaults.Thickness, DividerDefaults.color)
 
-            Spacer(Modifier.height(12.dp))
             // 🔁 Scrollable Content
             LazyColumn(
                 modifier = Modifier
@@ -94,8 +91,6 @@ fun AddStudentCard(
                 item { InputTextField(title = "Studies Course", "Student address") {} }
                 item { InputTextField(title = "Course Enrolled *", "Student address") {} }
                 item { DateSection(title = "Course Start Date *") {} }
-
-
                 item { ActionButtons {} }
             }
         }

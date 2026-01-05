@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.madrasha.presentation.HeaderSection
 import com.example.madrasha.presentation.student.components.AddStudentCard
 
 @Composable
@@ -58,6 +59,7 @@ fun StudentScreen() {
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
+            HeaderSection()
             Spacer(modifier = Modifier.height(16.dp))
             AddStudentButton() {
                 showSheet = true

@@ -27,6 +27,10 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -40,10 +44,12 @@ import kotlinx.coroutines.launch
 fun NavigationDrawer(
     drawerState: DrawerState,
     scope: CoroutineScope,
-    selectedItem: (AdminDrawerScreen) -> Unit
+    selectedItem: (AdminDrawerScreen) -> Unit,
 ) {
     val configuration = LocalConfiguration.current
     val drawerWidth = configuration.screenWidthDp.dp * 2 / 3
+    var prevItem by remember { mutableStateOf<AdminDrawerScreen>(AdminDrawerScreen.DASHBOARD) }
+    var selected by remember { mutableStateOf(false) }
 
     ModalDrawerSheet(
         modifier = Modifier.width(drawerWidth)
@@ -72,12 +78,12 @@ fun NavigationDrawer(
                 )
             }
         }
-
         Divider()
-
         Spacer(Modifier.height(8.dp))
         getNavDrawerItem().forEach { (keyName, title, icon) ->
-            DrawerItem(title, icon) {
+            selected = prevItem==keyName
+            DrawerItem(title, icon, selected) {
+                prevItem = keyName
                 selectedItem(keyName)
             }
         }
@@ -89,12 +95,15 @@ fun NavigationDrawer(
 fun DrawerItem(
     title: String,
     icon: ImageVector,
-    onClick: () -> Unit
+    selected: Boolean,
+    onClick: () -> Unit,
 ) {
     NavigationDrawerItem(
         label = { Text(title) },
-        selected = false,
-        onClick = { onClick() },
+        selected = selected,
+        onClick = {
+            onClick()
+        },
         icon = {
             Icon(icon, contentDescription = title)
         },
