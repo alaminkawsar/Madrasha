@@ -4,9 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Menu
@@ -35,7 +32,13 @@ import androidx.navigation.NavController
 import com.example.madrasha.core.component.NavigationDrawer
 import com.example.madrasha.core.util.AdminDrawerScreen
 import com.example.madrasha.presentation.admin.components.AdminDashboardContent
+import com.example.madrasha.presentation.course.CoursesScreen
+import com.example.madrasha.presentation.exam_result.ExamResultsScreen
+import com.example.madrasha.presentation.monthly_input.MonthlyInputScreen
+import com.example.madrasha.presentation.monthly_input.WeeklyInputScreen
+import com.example.madrasha.presentation.notice.NoticeScreen
 import com.example.madrasha.presentation.student.StudentScreen
+import com.example.madrasha.presentation.teacher.TeacherScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -124,18 +127,14 @@ fun HeaderSection() {
 @Composable
 fun MainContent(currentScreen: AdminDrawerScreen) {
     when(currentScreen) {
-        AdminDrawerScreen.COURSE -> TODO()
-        AdminDrawerScreen.DASHBOARD -> {
-            AdminDashboardContent()
-        }
-        AdminDrawerScreen.EXAM_AND_RESULT -> TODO()
-        AdminDrawerScreen.MONTHLY_INPUT -> TODO()
-        AdminDrawerScreen.NOTICE -> TODO()
-        AdminDrawerScreen.STUDENT -> {
-            StudentScreen()
-        }
-        AdminDrawerScreen.TEACHER -> TODO()
-        AdminDrawerScreen.WEEKLY_INPUT -> TODO()
+        AdminDrawerScreen.COURSE -> CoursesScreen()
+        AdminDrawerScreen.DASHBOARD -> AdminDashboardContent()
+        AdminDrawerScreen.EXAM_AND_RESULT -> ExamResultsScreen()
+        AdminDrawerScreen.MONTHLY_INPUT -> MonthlyInputScreen()
+        AdminDrawerScreen.NOTICE -> NoticeScreen()
+        AdminDrawerScreen.STUDENT -> StudentScreen()
+        AdminDrawerScreen.TEACHER -> TeacherScreen()
+        AdminDrawerScreen.WEEKLY_INPUT -> WeeklyInputScreen()
     }
 }
 

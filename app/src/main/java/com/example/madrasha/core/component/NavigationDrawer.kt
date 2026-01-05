@@ -85,6 +85,7 @@ fun NavigationDrawer(
             DrawerItem(title, icon, selected) {
                 prevItem = keyName
                 selectedItem(keyName)
+                scope.launch { drawerState.close() }
             }
         }
     }
