@@ -30,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.example.madrasha.presentation.admin.HeaderSection
+import com.example.madrasha.presentation.admin.common.HeaderSection
 
 @Composable
 fun AdminDashboardContent() {
@@ -44,10 +44,6 @@ fun AdminDashboardContent() {
         item { DashboardStatsGrid() }
         item { RecentStudentsCard() }
         item { RecentNoticesCard() }
-
-//        DashboardStatsGrid()
-//        RecentStudentsCard()
-//        RecentNoticesCard()
     }
 }
 

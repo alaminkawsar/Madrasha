@@ -108,23 +108,6 @@ fun HomeTopBar(
 }
 
 @Composable
-fun HeaderSection() {
-    Column (){
-        Text(
-            text = "Student Management",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = "Manage all student records and information",
-            fontSize = 14.sp,
-            color = Color.Gray
-        )
-    }
-}
-
-@Composable
 fun MainContent(currentScreen: AdminDrawerScreen) {
     when(currentScreen) {
         AdminDrawerScreen.COURSE -> CoursesScreen()
