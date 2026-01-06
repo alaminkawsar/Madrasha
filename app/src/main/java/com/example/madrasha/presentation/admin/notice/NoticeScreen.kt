@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.notice
+package com.example.madrasha.presentation.admin.notice
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

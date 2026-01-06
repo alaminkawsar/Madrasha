@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.teacher
+package com.example.madrasha.presentation.admin.student
 
 
 import androidx.compose.foundation.horizontalScroll
@@ -34,16 +34,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.madrasha.core.component.CustomSearchBar
-import com.example.madrasha.presentation.HeaderSection
-import com.example.madrasha.presentation.teacher.components.AddTeacherCard
+import com.example.madrasha.presentation.admin.common.HeaderSection
+import com.example.madrasha.presentation.admin.student.components.AddStudentCard
 
 @Composable
-fun TeacherScreen() {
-    val teachers = remember {
+fun StudentScreen() {
+    val students = remember {
         listOf(
-            Teacher("T001", "Ustad Ali Hassan", "Quran and Tazwid"),
-            Teacher("T002", "Ustaza Fatima Zahra", "Hadith Studies"),
-            Teacher("T003", "Ustad Muhammad Ibrahim", "Islamic History")
+            Student("S001", "Ali Hassan", "Hassan Ahmed"),
+            Student("S002", "Fatima Zahra", "Omar Abdullah"),
+            Student("S003", "Muhammad Ibrahim", "Ibrahim Khalil")
         )
     }
     var showSheet by remember { mutableStateOf(false) }
@@ -56,16 +56,16 @@ fun TeacherScreen() {
         ) {
             HeaderSection()
             Spacer(modifier = Modifier.height(8.dp))
-            AddTeacherButton() {
+            AddStudentButton() {
                 showSheet = true
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-            TeacherListCard(teachers)
+            StudentListCard(students)
 
         }
         if (showSheet) {
-            AddTeacherCard {
+            AddStudentCard {
                 showSheet = false
             }
         }
@@ -73,7 +73,7 @@ fun TeacherScreen() {
 }
 
 @Composable
-fun AddTeacherButton(
+fun AddStudentButton(
     onClick: () -> Unit
 ) {
     Button(
@@ -83,13 +83,13 @@ fun AddTeacherButton(
     ) {
         Icon(Icons.Default.Add, contentDescription = null)
         Spacer(modifier = Modifier.width(8.dp))
-        Text("Add Teacher")
+        Text("Add Student")
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeacherListCard(teachers: List<Teacher>) {
+fun StudentListCard(students: List<Student>) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
@@ -97,21 +97,21 @@ fun TeacherListCard(teachers: List<Teacher>) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "All Teachers (${teachers.size})",
+                text = "All Students (${students.size})",
                 fontWeight = FontWeight.Bold
             )
 
             Spacer(modifier = Modifier.height(8.dp))
             CustomSearchBar(
-                hint = "Search Teacher"
+                hint = "Search Student"
             ) { }
             Spacer(modifier = Modifier.height(8.dp))
-            TeacherTable(teachers)
+            StudentTable(students)
         }
     }
 }
 @Composable
-fun TeacherTable(teachers: List<Teacher>) {
+fun StudentTable(students: List<Student>) {
     val scrollState = rememberScrollState()
 
     Box(
@@ -123,7 +123,7 @@ fun TeacherTable(teachers: List<Teacher>) {
             modifier = Modifier.width(IntrinsicSize.Max)
         ) {
             TableHeader()
-            teachers.forEach {
+            students.forEach {
                 HorizontalDivider(
                     modifier = Modifier.fillMaxWidth(),
                     thickness = 1.dp
@@ -144,11 +144,11 @@ fun TableHeader() {
 }
 
 @Composable
-fun TableRow(teacher: Teacher) {
+fun TableRow(student: Student) {
     Row(modifier = Modifier.padding(vertical = 6.dp)) {
-        TableCell(teacher.id)
-        TableCell(teacher.name)
-        TableCell(teacher.fatherName)
+        TableCell(student.id)
+        TableCell(student.name)
+        TableCell(student.fatherName)
     }
 }
 
@@ -161,7 +161,7 @@ fun TableCell(text: String, isHeader: Boolean = false) {
     )
 }
 
-data class Teacher(
+data class Student(
     val id: String,
     val name: String,
     val fatherName: String
