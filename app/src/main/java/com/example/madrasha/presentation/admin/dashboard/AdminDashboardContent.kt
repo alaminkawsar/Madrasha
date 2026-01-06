@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.admin.components
+package com.example.madrasha.presentation.admin.dashboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,8 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.madrasha.presentation.HeaderSection
+import com.example.madrasha.presentation.admin.HeaderSection
 
 @Composable
 fun AdminDashboardContent() {

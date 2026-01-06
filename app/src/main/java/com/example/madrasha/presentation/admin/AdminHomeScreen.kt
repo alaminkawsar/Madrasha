@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation
+package com.example.madrasha.presentation.admin
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,19 +31,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.madrasha.core.component.NavigationDrawer
 import com.example.madrasha.core.util.AdminDrawerScreen
-import com.example.madrasha.presentation.admin.components.AdminDashboardContent
-import com.example.madrasha.presentation.course.CoursesScreen
-import com.example.madrasha.presentation.exam_result.ExamResultsScreen
-import com.example.madrasha.presentation.monthly_input.MonthlyInputScreen
-import com.example.madrasha.presentation.monthly_input.WeeklyInputScreen
-import com.example.madrasha.presentation.notice.NoticeScreen
-import com.example.madrasha.presentation.student.StudentScreen
-import com.example.madrasha.presentation.teacher.TeacherScreen
+import com.example.madrasha.presentation.admin.course.CoursesScreen
+import com.example.madrasha.presentation.admin.dashboard.AdminDashboardContent
+import com.example.madrasha.presentation.admin.exam_result.ExamResultsScreen
+import com.example.madrasha.presentation.admin.monthly_input.MonthlyInputScreen
+import com.example.madrasha.presentation.admin.monthly_input.WeeklyInputScreen
+import com.example.madrasha.presentation.admin.notice.NoticeScreen
+import com.example.madrasha.presentation.admin.student.StudentScreen
+import com.example.madrasha.presentation.admin.teacher.TeacherScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeDashboardScreen(navController: NavController) {
+fun AdminHomeScreen(navController: NavController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var currentScreen by remember { mutableStateOf<AdminDrawerScreen>(AdminDrawerScreen.DASHBOARD) }
@@ -109,7 +109,7 @@ fun HomeTopBar(
 
 @Composable
 fun HeaderSection() {
-    Column (modifier = Modifier.padding(16.dp)){
+    Column (){
         Text(
             text = "Student Management",
             fontSize = 22.sp,

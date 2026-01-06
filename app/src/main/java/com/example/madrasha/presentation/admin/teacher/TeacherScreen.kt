@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.student
+package com.example.madrasha.presentation.admin.teacher
 
 
 import androidx.compose.foundation.horizontalScroll
@@ -20,8 +20,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -36,16 +34,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.madrasha.core.component.CustomSearchBar
-import com.example.madrasha.presentation.HeaderSection
-import com.example.madrasha.presentation.student.components.AddStudentCard
+import com.example.madrasha.presentation.admin.HeaderSection
+import com.example.madrasha.presentation.admin.teacher.components.AddTeacherCard
 
 @Composable
-fun StudentScreen() {
-    val students = remember {
+fun TeacherScreen() {
+    val teachers = remember {
         listOf(
-            Student("S001", "Ali Hassan", "Hassan Ahmed"),
-            Student("S002", "Fatima Zahra", "Omar Abdullah"),
-            Student("S003", "Muhammad Ibrahim", "Ibrahim Khalil")
+            Teacher("T001", "Ustad Ali Hassan", "Quran and Tazwid"),
+            Teacher("T002", "Ustaza Fatima Zahra", "Hadith Studies"),
+            Teacher("T003", "Ustad Muhammad Ibrahim", "Islamic History")
         )
     }
     var showSheet by remember { mutableStateOf(false) }
@@ -58,16 +56,16 @@ fun StudentScreen() {
         ) {
             HeaderSection()
             Spacer(modifier = Modifier.height(8.dp))
-            AddStudentButton() {
+            AddTeacherButton() {
                 showSheet = true
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-            StudentListCard(students)
+            TeacherListCard(teachers)
 
         }
         if (showSheet) {
-            AddStudentCard {
+            AddTeacherCard {
                 showSheet = false
             }
         }
@@ -75,7 +73,7 @@ fun StudentScreen() {
 }
 
 @Composable
-fun AddStudentButton(
+fun AddTeacherButton(
     onClick: () -> Unit
 ) {
     Button(
@@ -85,13 +83,13 @@ fun AddStudentButton(
     ) {
         Icon(Icons.Default.Add, contentDescription = null)
         Spacer(modifier = Modifier.width(8.dp))
-        Text("Add Student")
+        Text("Add Teacher")
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudentListCard(students: List<Student>) {
+fun TeacherListCard(teachers: List<Teacher>) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
@@ -99,21 +97,21 @@ fun StudentListCard(students: List<Student>) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "All Students (${students.size})",
+                text = "All Teachers (${teachers.size})",
                 fontWeight = FontWeight.Bold
             )
 
             Spacer(modifier = Modifier.height(8.dp))
             CustomSearchBar(
-                hint = "Search Student"
+                hint = "Search Teacher"
             ) { }
             Spacer(modifier = Modifier.height(8.dp))
-            StudentTable(students)
+            TeacherTable(teachers)
         }
     }
 }
 @Composable
-fun StudentTable(students: List<Student>) {
+fun TeacherTable(teachers: List<Teacher>) {
     val scrollState = rememberScrollState()
 
     Box(
@@ -125,7 +123,7 @@ fun StudentTable(students: List<Student>) {
             modifier = Modifier.width(IntrinsicSize.Max)
         ) {
             TableHeader()
-            students.forEach {
+            teachers.forEach {
                 HorizontalDivider(
                     modifier = Modifier.fillMaxWidth(),
                     thickness = 1.dp
@@ -146,11 +144,11 @@ fun TableHeader() {
 }
 
 @Composable
-fun TableRow(student: Student) {
+fun TableRow(teacher: Teacher) {
     Row(modifier = Modifier.padding(vertical = 6.dp)) {
-        TableCell(student.id)
-        TableCell(student.name)
-        TableCell(student.fatherName)
+        TableCell(teacher.id)
+        TableCell(teacher.name)
+        TableCell(teacher.fatherName)
     }
 }
 
@@ -163,7 +161,7 @@ fun TableCell(text: String, isHeader: Boolean = false) {
     )
 }
 
-data class Student(
+data class Teacher(
     val id: String,
     val name: String,
     val fatherName: String

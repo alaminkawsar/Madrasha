@@ -1,4 +1,4 @@
-package com.example.madrasha.presentation.student.components
+package com.example.madrasha.presentation.admin.student.components
 
 
 import androidx.compose.foundation.background
