@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="app_primary_color">#1CA252</color>
 
+    <color name="search_bar_bg_color">#FFF5F5F5</color>
+
 </resources>

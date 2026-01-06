@@ -31,8 +31,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.madrasha.R
 import com.example.madrasha.core.component.CustomSearchBar
 import com.example.madrasha.presentation.admin.common.HeaderSection
 import com.example.madrasha.presentation.admin.teacher.components.AddTeacherCard
@@ -93,6 +95,9 @@ fun TeacherListCard(teachers: List<Teacher>) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White   // background color
+        ),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -103,7 +108,8 @@ fun TeacherListCard(teachers: List<Teacher>) {
 
             Spacer(modifier = Modifier.height(8.dp))
             CustomSearchBar(
-                hint = "Search Teacher"
+                hint = "Search Teacher",
+                backgroundColor = colorResource(id = R.color.search_bar_bg_color)
             ) { }
             Spacer(modifier = Modifier.height(8.dp))
             TeacherTable(teachers)
