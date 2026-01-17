@@ -3,9 +3,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-
+    alias(libs.plugins.ksp)
     id("kotlin-kapt")
-//    id("com.google.dagger.hilt.android")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -48,7 +48,7 @@ kotlin {
 }
 
 dependencies {
-
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -67,7 +67,8 @@ dependencies {
 
 
     // hilt dependency
-//    implementation(libs.hilt.android)
+    implementation("com.google.dagger:hilt-android:2.57.1")
+
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.ui.text)
     implementation(libs.androidx.runtime)
