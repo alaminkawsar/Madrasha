@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.madrasha"
+    namespace = "com.khidmah.madrasha"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.madrasha"
+        applicationId = "com.khidmah.madrasha"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
