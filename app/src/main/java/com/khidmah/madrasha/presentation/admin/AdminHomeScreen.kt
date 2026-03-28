@@ -1,5 +1,7 @@
 package com.khidmah.madrasha.presentation.admin
 
+import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -38,9 +40,18 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminHomeScreen(navController: NavController) {
+    val TAG = "AdminHomeScreen"
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var currentScreen by remember { mutableStateOf<AdminDrawerScreen>(AdminDrawerScreen.DASHBOARD) }
+
+    BackHandler(enabled = true) {
+        if(drawerState.isOpen) {
+            scope.launch { drawerState.close() }
+        } else {
+            navController.popBackStack()
+        }
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,

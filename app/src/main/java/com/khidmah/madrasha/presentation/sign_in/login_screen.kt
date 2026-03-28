@@ -28,6 +28,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,13 +41,28 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.khidmah.al_hisan.ui.theme.Green
-import com.khidmah.al_hisan.ui.theme.PrimaryGreen
-import com.khidmah.al_hisan.ui.theme.Red
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.khidmah.madrasha.core.util.UserRole
+import com.khidmah.madrasha.ui.theme.Green
+import com.khidmah.madrasha.ui.theme.PrimaryGreen
+import com.khidmah.madrasha.ui.theme.Red
 
 @Composable
-fun LoginScreen(onLoginSuccess: (UserRole, String, String) -> Unit) {
+fun LoginScreen(
+    onLoginSuccess: (UserRole) -> Unit,
+    loginViewModel: LoginViewModel = hiltViewModel()
+) {
+    val TAG = "LoginScreen"
+    val loginState = loginViewModel.loginState
+    // Observe login state reactively
+    LaunchedEffect(loginState) {
+        if (loginState is LoginUiState.Success) {
+            Log.d(TAG, "Login successful: ${loginState.role}")
+            loginViewModel.resetState()
+            onLoginSuccess(loginState.role)
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +72,13 @@ fun LoginScreen(onLoginSuccess: (UserRole, String, String) -> Unit) {
         TopSection()
         // 📦 Login Card
         LoginCard(
-            onLoginSuccess = onLoginSuccess,
+            username = loginViewModel.username,
+            password = loginViewModel.password,
+            selectedRole = loginViewModel.selectedRole,
+            onUsernameChange = { loginViewModel.onUsernameChange(it) },
+            onPasswordChange = { loginViewModel.onPasswordChange(it) },
+            onRoleSelected = { loginViewModel.onRoleSelected(it) },
+            onLoginClick = { loginViewModel.login() },
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .padding(
@@ -235,13 +257,16 @@ private fun SignInButton(onClickListener: () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginCard(
-    onLoginSuccess: (UserRole, String, String) -> Unit,
+    username: String,
+    password: String,
+    selectedRole: UserRole,
+    onUsernameChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onRoleSelected: (UserRole) -> Unit,
+    onLoginClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val TAG = "LoginCard"
-    var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var selectedRole by remember { mutableStateOf(UserRole.ADMIN) }
     var expanded by remember { mutableStateOf(false) }
 
     Card(
@@ -257,19 +282,19 @@ fun LoginCard(
                 expanded,
                 selectedRole,
                 onRoleSelected = {
-                    selectedRole = it
+                    onRoleSelected(it)
                     Log.d(TAG, "onRoleSelected: $it")
                 },
                 onExpansionChanged = {
                     expanded = it
                     Log.d(TAG, "onExpansionChanged: $it")
                 })
-            UserNameField(username = username, onValueChange = { username = it })
-            PasswordField(password = password, onValueChange = { password = it })
+            UserNameField(username = username, onValueChange = { onUsernameChange(it) })
+            PasswordField(password = password, onValueChange = { onPasswordChange(it) })
             SignInButton {
                 val role = UserRole.ADMIN
-                // UserRole.valueOf(selectedRole.name) TODO: [Update by this code when ready]
-                onLoginSuccess(role, username, password)
+                // val role = UserRole.valueOf(selectedRole.name) TODO: [Update by this code when ready]
+                onLoginClick()
             }
         }
     }

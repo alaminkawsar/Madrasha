@@ -1,6 +1,5 @@
 package com.khidmah.madrasha
 
-import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -13,24 +12,33 @@ import com.khidmah.madrasha.core.util.Screen
 import com.khidmah.madrasha.core.util.TEACHER_ROUTE
 import com.khidmah.madrasha.core.util.UserRole
 import com.khidmah.madrasha.presentation.admin.AdminHomeScreen
+import com.khidmah.madrasha.presentation.admin.student.StudentScreen
+import com.khidmah.madrasha.presentation.admin.teacher.TeacherScreen
 import com.khidmah.madrasha.presentation.sign_in.LoginScreen
+
 fun NavGraphBuilder.authenticationNav(
     navController: NavController,
-//    sharedViewModel: CommonViewModel
 ) {
     val TAG = "[authenticationNav]"
     navigation(startDestination = Screen.SignInScreen.route, route = AUTHENTICATION_ROUTE) {
         composable(route = Screen.SignInScreen.route) {
-            LoginScreen { role, username, password ->
-                Log.d(TAG, "SignInButton tapped for : " +
-                        "userName: $username, " +
-                        "password: $password " +
-                        "role: ${role.name} ")
-                navController.navigationScreen(role)
-            }
+            LoginScreen(
+                onLoginSuccess = { role -> navController.navigationScreen(role) }
+            )
         }
         composable(route = ADMIN_ROUTE) {
             AdminHomeScreen(navController)
+        }
+        composable(route = TEACHER_ROUTE) {
+            // TODO: Handle Teacher screen, show sample screen for now
+            TeacherScreen()
+        }
+        composable(route = STUDENT_ROUTE) {
+            // TODO: Handle Student screen, show sample screen for now
+            StudentScreen()
+        }
+        composable(route = GUARDIAN_ROUTE) {
+            // TODO: Handle guardian screen
         }
     }
 }
