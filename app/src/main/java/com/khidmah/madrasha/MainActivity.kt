@@ -9,16 +9,16 @@ import androidx.navigation.compose.rememberNavController
 import com.khidmah.madrasha.core.util.AUTHENTICATION_ROUTE
 import com.khidmah.madrasha.core.util.ROOT_ROUTE
 import com.khidmah.madrasha.ui.theme.MadrashaAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContent {
             MadrashaAppTheme {
                 val navController = rememberNavController()
-//                val sharedViewModel: CommonViewModel = hiltViewModel()
                 NavHost(
                     navController = navController,
                     startDestination = AUTHENTICATION_ROUTE,
@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     authenticationNav(
                         navController = navController,
-//                        sharedViewModel = sharedViewModel
                     )
                 }
             }
